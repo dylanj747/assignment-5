@@ -9,14 +9,16 @@ Press space to cast spells and blast the glowing orbs!
   Ghosts[] ghosts = new Ghosts[4];
   PImage[] characters;
   
-  enum States {IDLE, RUN, SHOOT}
+  enum States {IDLEFRONT, IDLETURN, RUN, SHOOT}
   Witch witch;
   
-
   boolean moveUp = false;
   boolean moveDown = false;
   boolean moveRight = false;
   boolean moveLeft = false;
+  
+  float witchX = 200;
+  float witchY = 250;
 
 void setup(){
   size(400, 400);
@@ -67,14 +69,16 @@ void draw(){
   quad(360, 35, 400, 20, 400, 200, 360, 175);
 
   witch.input();
-  witch.move();
   witch.display();
+  witch.move();
+
 }
 
 void keyPressed(){
    if (key == 'w'){
-   moveUp = true;
+   moveDown = true;
    witch.facing = 2;
+   
   }
    if (key == 'a'){
     moveLeft = true;
@@ -82,26 +86,40 @@ void keyPressed(){
     witch.running = true;
   }
    if (key == 's'){
-    moveDown = true;
+    moveUp = true;
     witch.facing = 3;
   }
    if (key == 'd'){
     moveRight = true;
     witch.facing = 1; 
     witch.running = true;
-  }
+}
   if(key==' '){
     witch.shootKey = true;
+    witch.isShooting = 4;
   }
 }
 
 
 void keyReleased(){
-  if(key == 'a' ||  key == 'd') {
-   witch.running = false;
+  if(key == 'w'){
+    moveDown = false;
   }
-  
-  if(key==' '){
+  if(key == 'a'){
+    moveLeft = false;
+    witch.running = false;
+    witch.standingLeft = true;
+  }
+  if(key == 's'){
+    moveUp = false;
+  }
+  if(key == 'd'){
+    moveRight = false;
+    witch.running = false;
+    witch.standingRight = true; 
+   }
+  if(key == ' '){
     witch.shooting = false;
+    witch.shootKey = false;
   }
 }
