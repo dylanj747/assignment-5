@@ -24,6 +24,7 @@ void collision(){
        orbX = random(20, 380);
        orbY = random(150, 300);
        orbCount++;
+       println("Blast!");
      }
    }
     if(facingRight == true && shoot == true){ 
@@ -32,6 +33,7 @@ void collision(){
        orbX = random(20, 380);
        orbY = random(150, 300);
        orbCount++;
+       println("Blast!");
      }
    }
    
