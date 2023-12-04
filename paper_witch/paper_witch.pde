@@ -12,13 +12,37 @@ Press space to cast spells and blast the glowing orbs!
   enum States {IDLEFRONT, IDLETURN, RUN, SHOOT}
   Witch witch;
   
+  Orb orb;
+  
+  Blast blast;
+  
+  StartScreen startScreen;
+  
+  EndScreen endScreen;
+  
   boolean moveUp = false;
   boolean moveDown = false;
   boolean moveRight = false;
   boolean moveLeft = false;
   
+  boolean shoot = false;
+  
   float witchX = 200;
   float witchY = 250;
+  
+  float orbX = random(20, 380);
+  float orbY = random(150, 300);
+  float diameter = 5; 
+  float orbCount = 0;
+
+  
+  boolean facingLeft = false;
+  boolean facingRight = false;
+  
+  boolean play = false;
+  boolean gameOver = false;
+
+  
 
 void setup(){
   size(400, 400);
@@ -42,6 +66,10 @@ void setup(){
 
 
   witch = new Witch();
+  orb = new Orb();
+  blast = new Blast();
+  startScreen = new StartScreen();
+  endScreen = new EndScreen();
 }
   
 void draw(){
@@ -67,36 +95,62 @@ void draw(){
   quad(50, 40, 80, 50, 80, 150, 50, 170);
   quad(320, 50, 350, 40, 350, 170, 320, 150);
   quad(360, 35, 400, 20, 400, 200, 360, 175);
-
+  
+  
+  if(play == true){
+    
   witch.input();
   witch.display();
   witch.move();
+  
+  orb.display();
 
+  if (shoot == true){
+  blast.shoot();
+  }
+  blast.collision();
+  
+   }
+   else {
+     startScreen.display();
+   }
+   
+   if (play == true && gameOver == true) {
+     endScreen.display();
+   }
 }
 
 void keyPressed(){
-   if (key == 'w'){
+  if (key == 'w'){
    moveDown = true;
    witch.facing = 2;
    
   }
-   if (key == 'a'){
+  if (key == 'a'){
     moveLeft = true;
     witch.facing = -1; 
     witch.running = true;
+    facingLeft = true;
+    facingRight = false;
   }
-   if (key == 's'){
+  if (key == 's'){
     moveUp = true;
     witch.facing = 3;
   }
-   if (key == 'd'){
+  if (key == 'd'){
     moveRight = true;
     witch.facing = 1; 
     witch.running = true;
-}
-  if(key==' '){
+    facingRight = true;
+    facingLeft = false;
+  }
+  if (key ==' '){
     witch.shootKey = true;
     witch.isShooting = 4;
+    shoot = true;
+  }
+  if (key == ENTER){
+      play = true;
   }
 }
 
@@ -121,5 +175,7 @@ void keyReleased(){
   if(key == ' '){
     witch.shooting = false;
     witch.shootKey = false;
+    shoot = false;
+    diameter = 5;
   }
 }

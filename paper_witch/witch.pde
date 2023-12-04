@@ -35,7 +35,7 @@ class Witch {
       image(characters[0], witchX, witchY, 175, 210);
       }
       break;
-      
+      //make case work
       case IDLETURN:
       if(facing == -1){
         image(characters[2], witchX, witchY, 175, 210);
@@ -43,7 +43,7 @@ class Witch {
       image(characters[3], witchX, witchY, 175, 210);
       }
       break;
-           
+        //fix shoot so right isnt default   
       case SHOOT:
       if(facing == -1 && isShooting == 4){
         image(characters[6], witchX, witchY, 175, 210);
