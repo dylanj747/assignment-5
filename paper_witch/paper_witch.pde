@@ -12,6 +12,10 @@ Authors: Jo Wood and Aidan Slingsby
 Date: December 4, 2023
 URL: https://www.gicentre.net/handy/using
 */
+//inventory skill 21
+//inventory skill 23
+//inventory skill 24
+//inventory skill 40
 
   import org.gicentre.handy.*;
   HandyRenderer h;
@@ -20,8 +24,8 @@ URL: https://www.gicentre.net/handy/using
 
 
 //entablish array and class for multiple clouds
-  Ghosts[] ghosts = new Ghosts[4];
-  PImage[] characters;
+  Ghosts[] ghosts = new Ghosts[4]; //inventory skill 33
+  ArrayList <PImage> characters; //inventory skill 34
   
   enum States {IDLEFRONT, IDLETURN, RUN, SHOOT}
   Witch witch;
@@ -41,7 +45,7 @@ URL: https://www.gicentre.net/handy/using
   
   boolean shoot = false;
   
-  float witchX = 200;
+  float witchX = 200; //inventory skill 10
   float witchY = 250;
   
   float orbX = random(20, 380);
@@ -56,35 +60,33 @@ URL: https://www.gicentre.net/handy/using
   boolean play = false;
   boolean gameOver = false;
   
-  int numSeconds = 5;
+  int numSeconds = 65;
   int rate = 60;
   int frames = numSeconds * rate;
   
   int seed;
-
-
   
 
-void setup(){
+void setup(){ //inventory skill 4
   size(400, 400);
   frameRate(rate);
   h = new HandyRenderer(this);
   
    //loop the ghosts across the screen
-  for (int i = 0; i < ghosts.length; i++) {
+  for (int i = 0; i < ghosts.length; i++) { //inventory skill 33
     ghosts[i]= new Ghosts (random(-100, width + 200), random(0, 250)); //regenerate clouds at random locations off-screen
-  }
+}
   
-  characters = new PImage[8];
+  characters = new ArrayList <PImage>(); //inventory skills 34, 48
   
-  characters[0] = loadImage("idle front.png"); //idle front
-  characters[1] = loadImage("idle back.png"); //idle back
-  characters[2] = loadImage("idle left.png"); //idle left
-  characters[3] = loadImage("idle right.png"); //idle right
-  characters[4] = loadImage("run left.png"); //run left
-  characters[5] = loadImage("run right.png"); //run right
-  characters[6] = loadImage("blast left.png"); //blast left
-  characters[7] = loadImage("blast right.png"); //run right
+  characters.add(loadImage("idle front.png")); //idle front
+  characters.add(loadImage("idle back.png")); //idle back
+  characters.add(loadImage("idle left.png")); //idle left
+  characters.add(loadImage("idle right.png")); //idle right
+  characters.add(loadImage("run left.png")); //run left
+  characters.add(loadImage("run right.png")); //run right
+  characters.add(loadImage("blast left.png")); //blast left
+  characters.add(loadImage("blast right.png")); //run right
 
 
   witch = new Witch();
@@ -95,8 +97,8 @@ void setup(){
 }
   
 void draw(){
-  background(0);
-  rectMode(CORNERS); 
+  background(0); //inventory skill 5
+  rectMode(CORNERS); //inventory skill 3
   ellipseMode(CENTER);
   
 /*
@@ -114,15 +116,17 @@ Location: Programming Fundamentals - Week 12, slide 19
   }
   
   //draw and move clouds in the backgound
-  for (int i = 0; i < ghosts.length; i++) {
-  ghosts[i].move(); //calls move cloud method from clouds class   
-  ghosts[i].display(); //displays clouds from cloud class
+  for (int i = 0; i < ghosts.length; i++) { //inventory skill 16
+    ghosts[i].display(); //displays clouds from cloud class
+    for(int j = 0; j < 1; j ++){ //inventory skill 17 //allows me to adjust the overall speed of the ghosts
+      ghosts[i].move(); //calls move cloud method from clouds class   
+      } 
    }
    
   //draw hallway
-  noStroke();
+  noStroke(); //inventory skill 2
   fill(255);
-  quad(0, 0, 100, 0, 100, 250, 0, 400);
+  quad(0, 0, 100, 0, 100, 250, 0, 400); //inventory skill 1
   quad(400, 0, 300, 0, 300, 250, 400, 400);
   fill(50);  
   quad(100, 250, 300, 250, 400, 400, 0, 400);
@@ -144,9 +148,9 @@ Location: Programming Fundamentals - Week 12, slide 19
   h.quad(360, 35, 400, 20, 400, 200, 360, 175);
   
   
-  if(play == true && gameOver == false){
-    int seconds = (frames - frameCount) / rate;
-    if (seconds >=0) {
+  if(play == true && gameOver == false){ //inventory skills 12, 13, 14
+    int seconds = (frames - frameCount) / rate; //inventory skills 9, 44
+    if (seconds >=0) { //inventory skill 9
     fill(0);
     textSize(15);
     text("Time Left:", 3, 15);
@@ -170,18 +174,45 @@ Location: Programming Fundamentals - Week 12, slide 19
   if(seconds <= 0){
      gameOver = true;
    }
+ }
+   else if (gameOver == true) {
+     endScreen.display();
+     if(keyPressed && key == CODED && keyCode == SHIFT){
+       reset();
+     }
    }
    else {
      startScreen.display();
    }
    
-   if (gameOver == true) {
-     endScreen.display();
-   }
-   
 }
 
-void keyPressed(){
+
+void reset() { //inventory skill 20
+  moveUp = false;
+  moveDown = false;
+  moveRight = false;
+  moveLeft = false;
+  shoot = false;
+  witchX = 200;
+  witchY = 250;
+  orbX = random(20, 380);
+  orbY = random(150, 300);
+  orbCount = 0;
+  facingLeft = false;
+  facingRight = false;
+  play = false;
+  gameOver = false;
+  numSeconds = 65;
+  rate = 60;
+  frames = numSeconds * rate;
+  
+  witch.reset();
+  blast.reset();
+}
+
+
+void keyPressed(){ //inventory skill 7
   if (key == 'w'){
    moveDown = true;
    witch.facing = 2;
@@ -212,11 +243,6 @@ void keyPressed(){
   }
   if (key == ENTER){
       play = true;
-  }
-  if (key == SHIFT){
-      play = true;
-      gameOver = false;
-      numSeconds = 62;
   }
 }
 

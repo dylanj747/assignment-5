@@ -17,14 +17,14 @@ void shoot(){
   }
 }
 
-void collision(){
+void collision(){ //inventory skill 49
   if(facingLeft == true && shoot == true){ 
     if(witchX-82+20 >= orbX-10 && witchX-82-20 <= orbX+10
      && witchY+1+20 >= orbY-10 && witchY+1-20 <= orbY+10){
        orbX = random(20, 380);
        orbY = random(150, 300);
-       orbCount++;
-       println("Blast!");
+       orbCount++; //inventory skill 8
+       println("Blast!"); //inventory skill 11
      }
    }
     if(facingRight == true && shoot == true){ 
@@ -38,4 +38,8 @@ void collision(){
    }
    
  }
+ 
+void reset(){
+  isCollision = false;
+}
 }
