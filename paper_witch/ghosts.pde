@@ -31,7 +31,7 @@ void display(){ //draws translucent clouds with moving locations
 
 
 void move() { //inventory skill 35 //moves clouds with varying velocities
-  location.sub(velocity);
+  location.sub(velocity); //inventory skills 40, 43
    if (location.x + 150 < 0) { //respawns clouds on the right when they go past the left edge of the screen
      location.x = random(600, 1000); //inventory skill 41
      location.y = random(0, 300);

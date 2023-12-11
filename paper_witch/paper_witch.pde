@@ -15,7 +15,6 @@ URL: https://www.gicentre.net/handy/using
 //inventory skill 21
 //inventory skill 23
 //inventory skill 24
-//inventory skill 40
 
   import org.gicentre.handy.*;
   HandyRenderer h;
