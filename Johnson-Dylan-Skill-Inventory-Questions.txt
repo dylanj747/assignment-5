@@ -1,0 +1,28 @@
+Skill Inventory Questions:
+
+19. What’s the difference between a for loop and a while loop?
+For loops are used when you know how many times you want an segment of code to run, while while loops  run for an unknown number of times until the operation is explicitly told to stop.
+
+22. What’s the difference between parameters and arguments?
+Parameters are variables specified within a function. For example, ghost(float x, float y). Arguments are values that are declared and returned to the function when the function is called. For example, ghost(1, 2).
+
+25. What’s the difference between a class and an object?
+Classes are constructor blueprints for creating multiple objects and their attributes, while objects are follow their specified attributes within a class. For example, if dessert is a class, then types of dessert are objects. 
+
+26. What is a constructor function? What does it do and when?
+Constructor functions are functions that initialize objects within a class. They are called using the keyword new and begin with a capital letter.
+
+27. Why should each class have its own tab in Processing?
+Each class needs its own tab in processing for both organization purposes and to separate subclasses from the main class. 
+
+31. What’s the difference between an array and an ArrayList?
+Both store lists of elements or values, but arrays are a fixed length and order while ArrayLists allow for resizing, editing, removing, and more flexibility.
+
+32. Why would you want to go through a list backwards, decrementing the index?
+A reason to traverse a list backwards is if you want to access the values within the list in opposite order, starting with the list length and ending at the first element.
+
+37. When should you use PVector instead of float variables?
+You should use PVector when you want to store two or three values at the same time, rather than one. For example, you can store an object's location and velocity.
+
+42. What is a normalized vector, why is it useful?
+Normalized vectors maintain direction but do not change length, which remains at 1. They are useful when you only want to know the direction of something, not its length. 
