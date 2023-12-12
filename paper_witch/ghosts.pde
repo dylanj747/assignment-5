@@ -1,13 +1,14 @@
 class Ghosts { //inventory skill 28
 
    
-  //cloud specific PVector variables
+//PVector variables for ghosts
   PVector location;
   PVector velocity;
-  float speed = random(0.2, 1); //slow speed of clouds
+  PVector random = PVector.random2D(); //inventory skill 41 //random location for a ghost
+  float speed = random(0.2, 1); //initial speed of ghosts
 
 
-  //calls on array from main class with x and y coordinates for cloud locations
+//calls on array from main class with x and y coordinates for ghosts locations
   Ghosts(float x, float y) { //inventory skills 28, 30
   location = new PVector(x, y); //inventory skill 29 //creates PVector coordinate locations
   velocity = new PVector(speed, 0); //creates PVector speed
@@ -16,8 +17,8 @@ class Ghosts { //inventory skill 28
   velocity.x = speed; //inventory skill 39 //velocity math for speed and location
 }
  
- 
-void display(){ //draws translucent clouds with moving locations
+//draws transparent ghosts
+void display(){
   fill(255, 150);
   noStroke();
   arc(location.x + 50, location.y + 10, 60, 180, PI+HALF_PI, TWO_PI);
@@ -30,10 +31,11 @@ void display(){ //draws translucent clouds with moving locations
 }
 
 
-void move() { //inventory skill 35 //moves clouds with varying velocities
-  location.sub(velocity); //inventory skills 40, 43
-   if (location.x + 150 < 0) { //respawns clouds on the right when they go past the left edge of the screen
-     location.x = random(600, 1000); //inventory skill 41
+//moves ghosts at different velocities
+void move() { //inventory skill 35
+  location.sub(velocity); //inventory skill 43 //subtracts location from the ghost's velocity
+   if (location.x + 150 < 0) { //respawns ghosts on the right when they go past the left edge of the screen
+     location.x = random(600, 1000); 
      location.y = random(0, 300);
      velocity.x = random(0.5, 1); //creates a new velocity within slow random constraints
     }

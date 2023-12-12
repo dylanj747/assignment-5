@@ -1,73 +1,83 @@
 class Witch {
-  States state;
   
+//establishes states used in switch statement  
+  States state;
+
+//boolean to change state to shoot
   boolean shootKey = false;
   
+//initial directions and states of images displayed  
   int facing = 1;
   boolean running = false;
   boolean shooting = false;
   boolean standingLeft = false;
   boolean standingRight = false;
   int isShooting = 4;
-  
+
+//float for speed witch moves at
   float speed = 4;
+ 
   
   Witch() {
-    state = States.IDLEFRONT; 
+    state = States.IDLEFRONT; //starting state is idle facing forward
   }
+
     
+//switch statement to display the right character image based on movement      
   void display(){
     imageMode(CENTER);
     fill(0);
     switch(state) { //inventory skill 15
-      case RUN:
-      if(facing == -1){
-        image(characters.get(4), witchX, witchY, 175, 210); //inventory skills 10, 36
-      } else {
+      case RUN: //if moving
+      if(facing == -1){ //left is pressed
+        image(characters.get(4), witchX, witchY, 175, 210); //inventory skills 10, 36 //gets the image location from the arrayList characters
+      } else { //right is pressed
       image(characters.get(5), witchX, witchY, 175, 210);
       }
-      break;  //inventory skill 18
+      break; //inventory skill 18 //stops case
       
-      case IDLEFRONT:
-      if(facing == 2){
+      case IDLEFRONT: //if not moving
+      if(facing == 2){ //down was just pressed
         image(characters.get(1), witchX, witchY, 175, 210);
-      } else {
+      } else { //up was just pressed
       image(characters.get(0), witchX, witchY, 175, 210);
       }
       break;
-      //make case work
-      case IDLETURN:
+
+      case IDLETURN: //please ignore. doesn't affect gameplay or code. not commented out because i will fix it. eventually.
       if(facing == -1){
         image(characters.get(2), witchX, witchY, 175, 210);
       } else {
       image(characters.get(3), witchX, witchY, 175, 210);
       }
       break;
-        //fix shoot so right isnt default   
-      case SHOOT:
-      if(facing == -1 && isShooting == 4){
+
+      case SHOOT: //if space is pressed
+      if(facing == -1 && isShooting == 4){ //left was just pressed
         image(characters.get(6), witchX, witchY, 175, 210);
-      } else {
+      } else { //right was just pressed
       image(characters.get(7), witchX, witchY, 175, 210);
       }
       break;
     }
   }
   
-  
+
+//changes states based on input from main class keyPressed controls  
    void input(){
-    if(running){
-      state = States.RUN;
+    if(running){ 
+      state = States.RUN; //runs
     } else {
-      state = States.IDLEFRONT;
+      state = States.IDLEFRONT; //default
     }
     
     if(shootKey){
-      state = States.SHOOT;
+      state = States.SHOOT; //shoots
     }
   }
   
-  
+
+//conditional statements that move the witch within the allowed area  
   void move(){
   if (moveRight == true && witchX <= 300){ //constrains witch location to the screen width on the left 
     witchX = constrain(witchX + speed, 0, 300); //inventory skill 6 //moves witch right at a speed of 3
@@ -83,6 +93,8 @@ class Witch {
     }
   }
 
+
+//reset variables when new game is started
 void reset(){
   shootKey = false;
   facing = 1;

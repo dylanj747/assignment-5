@@ -1,5 +1,7 @@
 class EndScreen{
   
+  
+//displays end screen when game is over  
 void display(){
   
   fill(0);
@@ -11,11 +13,12 @@ void display(){
   text("Time's Up!", 125, 100);
   
   textSize(30);
-  text("Score: ", 150, 130);
+  text("Score: ", 150, 130); //displays player's score
   text(orbCount, 235, 130);
   textSize(25);
-  text("Press Shift to Restart", 100, 165);
+  text("Press Shift to Restart", 100, 165); //instructions for new game
   
+  //draws image of shift key
   rectMode(CENTER); 
   noFill();
   stroke(255);

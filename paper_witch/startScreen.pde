@@ -1,6 +1,7 @@
 class StartScreen{
   
-  
+ 
+//displays the start game screen with instructions  
 void display(){ 
   fill(255);
   textSize(16);
@@ -18,6 +19,7 @@ void display(){
   textSize(35);
   text("Press Enter To Start", 55, 160);
   
+  //draws enter button
   rectMode(CENTER); 
   noFill();
   stroke(255);
@@ -27,6 +29,5 @@ void display(){
   h.line(175, 195, 170, 200);
   h.line(175, 205, 170, 200);
   h.line(230, 195, 230, 200);
-}
-  
+} 
 }
