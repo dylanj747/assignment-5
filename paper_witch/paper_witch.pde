@@ -19,7 +19,7 @@ URL: https://www.gicentre.net/handy/using
 
 
 //establish array for background ghosts
-  Ghosts[] ghosts = new Ghosts[4]; //inventory skill 33
+  Ghost[] ghost = new Ghost[4]; //inventory skill 33
   
 //establish arrayList for sprite sheet
   ArrayList <PImage> characters; //inventory skill 34
@@ -86,8 +86,8 @@ void setup(){ //inventory skill 4
   h = new HandyRenderer(this); //sketchy render established
   
 //loop the ghosts across the screen in an array
-  for (int i = 0; i < ghosts.length; i++) { //inventory skill 33 //uses a loop to traverse the ghost array
-    ghosts[i]= new Ghosts (random(-100, width + 200), random(0, 250)); //regenerates ghosts at random locations off-screen
+  for (int i = 0; i < ghost.length; i++) { //inventory skill 33 //uses a loop to traverse the ghost array
+    ghost[i]= new Ghost(random(-100, width + 200), random(0, 250)); //regenerates ghosts at random locations off-screen
 }
 
 //creates the characters arraylist that stores sprite images
@@ -130,10 +130,10 @@ Location: Programming Fundamentals - Week 12, slide 19
   }
   
 //draw and move ghosts in the backgound
-  for (int i = 0; i < ghosts.length; i++) { //inventory skill 16
-    ghosts[i].display(); //displays ghosts from ghost class
+  for (int i = 0; i < ghost.length; i++) { //inventory skill 16
+    ghost[i].display(); //displays ghosts from ghost class
     for(int j = 0; j < 1; j ++){ //inventory skill 17 //allows me to adjust the overall speed of the ghosts
-      ghosts[i].move(); //calls move ghost method from ghost class   
+      ghost[i].move(); //calls move ghost method from ghost class   
       } 
    }
       
